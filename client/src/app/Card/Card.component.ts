@@ -11,14 +11,7 @@ export class CardComponent implements OnInit {
 
   baseUrl = environment.baseUrl
 
-  public posts: Post[] = [{
-    title: '',
-    description: '',
-    slug: '',
-    photo: '',
-    content: '',
-    created_at: new Date(),
-  }];
+  public posts: Post[] = [];
 
   constructor(private http: HttpClient) { }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using serverWebAPI.Data;
 using serverWebAPI.Models;
@@ -44,6 +45,7 @@ namespace serverWebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPost(Post post){
             try
             {

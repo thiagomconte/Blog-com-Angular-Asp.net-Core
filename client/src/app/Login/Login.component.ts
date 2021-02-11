@@ -34,12 +34,8 @@ export class LoginComponent implements OnInit {
   })  
 
   login(){
-    this.http.post(`${this.baseUrl}user/login`, this.formLogin.value, {
-      headers:{
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      }
-    }).subscribe(
+    this.http.post(`${this.baseUrl}user/login`, this.formLogin.value
+    ).subscribe(
       (res:any) => {
         this.payload.email = res.account.email
         this.payload.isLoggedIn = true;

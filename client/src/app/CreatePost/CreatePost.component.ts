@@ -34,12 +34,7 @@ export class CreatePostComponent implements OnInit {
 
 
   postSubmit() {
-    this.http.post(`${this.baseUrl}post`, JSON.stringify(this.createPostForm.value), {
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      }
-    }).subscribe(
+    this.http.post(`${this.baseUrl}post`, JSON.stringify(this.createPostForm.value)).subscribe(
       (res:any) =>{
         this.showAlert = true;
         setTimeout(() =>{
