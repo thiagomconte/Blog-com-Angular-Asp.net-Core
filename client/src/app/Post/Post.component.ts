@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Store} from '@ngrx/store';
 import {Auth} from '../models/auth';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-Post',
@@ -25,7 +26,7 @@ export class PostComponent implements OnInit {
 
   auth!: Auth;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private store: Store<{ auth: Auth }>) {
+  constructor(private toastr : ToastrService, private http: HttpClient, private route: ActivatedRoute, private router: Router, private store: Store<{ auth: Auth }>) {
     store.select('auth').subscribe(x => {
       this.auth = x;
     })
@@ -48,10 +49,14 @@ export class PostComponent implements OnInit {
   deletePost(id: number){
     this.http.delete(`${this.baseUrl}post/${id}`).subscribe(
       res => {
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/").then(() => {
+          this.toastr.success("Postagem deletada com sucesso")
+        });
       },
       err => {
-        console.log(err);
+        this.router.navigateByUrl(this.router.url).then(()=>{
+          this.toastr.error(err.error);
+        })
       }
     )
   }

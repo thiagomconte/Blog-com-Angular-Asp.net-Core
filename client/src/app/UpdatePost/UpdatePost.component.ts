@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-UpdatePost',
@@ -11,11 +12,9 @@ import { environment } from 'src/environments/environment';
 })
 export class UpdatePostComponent implements OnInit {
 
-  baseUrl = environment.baseUrl
-  public errorMessage = "";
-  public showDanger: boolean = false;
+  baseUrl = environment.baseUrl;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private activeRoute: ActivatedRoute, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private activeRoute: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.activeRoute.queryParams.subscribe(params =>{
@@ -45,16 +44,14 @@ export class UpdatePostComponent implements OnInit {
   postSubmit() {
     this.http.put(`${this.baseUrl}post/update`, JSON.stringify(this.updatePostForm.value)).subscribe(
       (res:any) =>{
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/").then(() =>{
+          this.toastr.success("Postagem atualizada com sucesso")
+        });
       },
       (error: any) =>{
-        if(error.status === 400){
-          this.errorMessage = error.error.title;
-          this.showDanger = true;
-          setTimeout(() =>{
-            this.showDanger = false;
-          }, 10000);
-        }
+        this.router.navigateByUrl(this.router.url).then(() => {
+          this.toastr.error(error.error);
+        })
       }
     )
   }

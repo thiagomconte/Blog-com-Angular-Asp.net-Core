@@ -16,29 +16,30 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule, ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../environments/environment';
-import {authReducer} from './store/reducers/auth.reducer';
+import { authReducer } from './store/reducers/auth.reducer';
 import { AppState } from './store/app.state';
-import {TokenInterceptorService} from './Services/token-interceptor.service';
+import { TokenInterceptorService } from './Services/token-interceptor.service';
 import { UpdatePostComponent } from './UpdatePost/UpdatePost.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['auth'], rehydrate: true})(reducer);
+  return localStorageSync({ keys: ['auth'], rehydrate: true })(reducer);
 }
 const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 
 @NgModule({
-  declarations: [								
+  declarations: [
     AppComponent,
-      NavbarComponent,
-      CardComponent,
-      LoginComponent,
-      RegisterComponent,
-      PostComponent,
-      CreatePostComponent,
-      UpdatePostComponent
-   ],
+    NavbarComponent,
+    CardComponent,
+    LoginComponent,
+    RegisterComponent,
+    PostComponent,
+    CreatePostComponent,
+    UpdatePostComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,11 +48,16 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: authReducer }, {metaReducers}),
+    StoreModule.forRoot({ auth: authReducer }, { metaReducers }),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass:TokenInterceptorService,
+    useClass: TokenInterceptorService,
     multi: true
   }],
   bootstrap: [AppComponent]

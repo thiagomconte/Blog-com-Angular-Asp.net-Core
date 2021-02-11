@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl} from '@angular/forms';
-import { HttpClient} from '@angular/common/http';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-Register',
@@ -12,11 +13,8 @@ import { environment } from 'src/environments/environment';
 export class RegisterComponent implements OnInit {
 
   baseUrl = environment.baseUrl
-  public showDanger:boolean = false;
-  public errorMessage:string = "";
 
-
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,37 +26,31 @@ export class RegisterComponent implements OnInit {
     checkpassword: ''
   })
 
-  register(){
+  register() {
     var data = this.formUser.value;
-    if(data.password !== data.checkpassword){
-      this.funcShowError("Passwords do not match");
+    if (data.password !== data.checkpassword) {
+      this.toastr.error("Senhas estão diferentes")
     }
-    else{
+    else {
       this.http.post(`${this.baseUrl}user`, JSON.stringify(data)).subscribe(
-        (res: any) =>{
-          this.router.navigateByUrl('/login');
+        (res: any) => {
+          this.router.navigateByUrl('/login').then(() => {
+            this.toastr.success("Conta cadastrada com sucesso");
+          });
         },
         (error: any) => {
-          this.funcShowError(error.error);
-          console.log(error);
-          this.router.navigateByUrl('/register');
+          this.router.navigateByUrl("/register").then(() => {
+            this.toastr.error(error.error);
+          })
         }
       )
     }
   }
 
-  funcShowError(msg: string){
-    this.errorMessage = msg;
-    this.showDanger = true;
-    setTimeout(() =>{
-      this.showDanger = false;
-    }, 8000);
-  }
-
 }
 
 
-interface User{
+interface User {
   nome: string,
   email: string,
   password: string

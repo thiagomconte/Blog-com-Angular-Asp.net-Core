@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Store } from '@ngrx/store';
 import {authenticateUser} from './../store/actions/auth.actions';
 import {Auth} from './../models/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-Login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
     isLoggedIn: false
   };
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private store: Store) { }
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private store: Store) { }
 
   ngOnInit() {
   }
@@ -44,11 +45,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl("/");
       },
       (error: any) => {
-        this.errorMessage = error.error;
-        this.showDanger = true;
-        setTimeout(() =>{
-          this.showDanger = false;
-        }, 5000);
+        this.toastr.error(error.error);
       }
     )
   }

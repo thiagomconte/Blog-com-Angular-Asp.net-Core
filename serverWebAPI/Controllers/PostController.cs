@@ -49,6 +49,9 @@ namespace serverWebAPI.Controllers
         public async Task<IActionResult> AddPost(Post post){
             try
             {
+                if(post.title.Length < 0 || post.description.Length < 0 || post.slug.Length < 0 || post.content.Length < 0 || post.photo.Length < 0){
+                    return BadRequest("Preencha todos os campos");
+                }
                 await _repo.AddPost(post);
                 if(await _repo.SaveChangesAsync()){
                     return Ok("Postagem adicionada");
@@ -57,7 +60,6 @@ namespace serverWebAPI.Controllers
             }
             catch (System.Exception)
             {
-                
                 return BadRequest("Não foi possível adicionar a postagem");
             }
         }

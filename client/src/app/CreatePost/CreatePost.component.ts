@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -14,12 +15,8 @@ import { environment } from 'src/environments/environment';
 export class CreatePostComponent implements OnInit {
 
   baseUrl = environment.baseUrl
-  public successMessage = "Postagem adicionada";
-  public errorMessage = "";
-  public showAlert: boolean = false;
-  public showDanger: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
@@ -36,20 +33,14 @@ export class CreatePostComponent implements OnInit {
   postSubmit() {
     this.http.post(`${this.baseUrl}post`, JSON.stringify(this.createPostForm.value)).subscribe(
       (res:any) =>{
-        this.showAlert = true;
-        setTimeout(() =>{
-          this.showAlert = false;
-        }, 5000);
-        this.createPostForm.reset();
+        this.router.navigateByUrl("/").then(() =>{
+          this.toastr.success("Postagem criada com sucesso");
+        })
       },
       (error: any) =>{
-        if(error.status === 400){
-          this.errorMessage = error.error.title;
-          this.showDanger = true;
-          setTimeout(() =>{
-            this.showDanger = false;
-          }, 10000);
-        }
+        this.router.navigateByUrl("/createPost").then(() => {
+          this.toastr.error(error.error.title);
+        })
       }
     )
   }
