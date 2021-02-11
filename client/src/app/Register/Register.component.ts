@@ -34,18 +34,14 @@ export class RegisterComponent implements OnInit {
       this.funcShowError("Passwords do not match");
     }
     else{
-      this.http.post(`${this.baseUrl}user`, JSON.stringify(data),{
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }
-      }).subscribe(
-        () =>{
+      this.http.post(`${this.baseUrl}user`, JSON.stringify(data)).subscribe(
+        (res: any) =>{
           this.router.navigateByUrl('/login');
         },
         (error: any) => {
           this.funcShowError(error.error);
           console.log(error);
+          this.router.navigateByUrl('/register');
         }
       )
     }

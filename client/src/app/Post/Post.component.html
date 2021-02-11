@@ -16,6 +16,6 @@
   <br />
   <div class="options">
     <button *ngIf="auth.isLoggedIn" class="btn btn-outline-danger" (click)="deletePost(post.id)">Deletar</button>
-    <button *ngIf="auth.isLoggedIn" class="btn btn-outline-warning ml-2">Editar</button>
+    <a routerLink="/updatePost" [queryParams]="{slug: post.slug}" *ngIf="auth.isLoggedIn" class="btn btn-outline-warning ml-2">Editar</a>
   </div>
 </div>

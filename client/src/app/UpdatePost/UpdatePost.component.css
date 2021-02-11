@@ -1,0 +1,72 @@
+.alert {
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .create-post-page {
+    width: 100%;
+    min-width: 350px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+    text-align: center;
+  }
+  
+  .create-post-page h1 {
+    font-size: 2.5rem;
+  }
+  
+  .create-post-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-post-form input,
+  textarea {
+    margin-top: 2rem;
+    height: 2.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .create-post-form textarea {
+    height: 10rem;
+    padding: 0.3rem 1rem;
+  }
+  
+  .create-post-form input:focus,
+  textarea:focus {
+    outline: none;
+  }
+  
+  .create-post-page .btn {
+    background-color: rgb(15, 15, 207);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    height: 2.5rem;
+    margin-top: 2.5rem;
+  }
+  
+  .create-post-page .btn:hover {
+    background-color: rgb(0, 0, 90);
+  }
+  
+  .create-post-page span {
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .create-post-page a {
+    cursor: pointer;
+    color: rgb(15, 15, 207);
+  }
+  

@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import {authReducer} from './store/reducers/auth.reducer';
 import { AppState } from './store/app.state';
 import {TokenInterceptorService} from './Services/token-interceptor.service';
+import { UpdatePostComponent } from './UpdatePost/UpdatePost.component';
 
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
@@ -28,14 +29,15 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 
 @NgModule({
-  declarations: [							
+  declarations: [								
     AppComponent,
       NavbarComponent,
       CardComponent,
       LoginComponent,
       RegisterComponent,
       PostComponent,
-      CreatePostComponent
+      CreatePostComponent,
+      UpdatePostComponent
    ],
   imports: [
     BrowserModule,

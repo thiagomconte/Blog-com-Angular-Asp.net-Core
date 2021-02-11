@@ -1,0 +1,14 @@
+<div class="create-post-page">
+  <h1>Update Post</h1>
+  <hr>
+  <form [formGroup]="updatePostForm" (submit)="postSubmit()" class="create-post-form">
+    <input type="hidden" formControlName="id">
+    <input type="text" formControlName="title" class="px-3" placeholder="Title">
+    <input type="text" formControlName="description" class="px-3" placeholder="Descritpion">
+    <input type="text" formControlName="slug" class="px-3" placeholder="Slug">
+    <input type="text" formControlName="photo" class="px-3" placeholder="Photo">
+    <textarea formControlName="content" id="" cols="30" rows="10" placeholder="Content"></textarea>
+    <input type="hidden" formControlName="created_at">
+    <button type="submit" value="submit" class="btn">Update Post</button>
+  </form>
+</div>

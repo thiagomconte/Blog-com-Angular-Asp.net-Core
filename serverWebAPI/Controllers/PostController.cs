@@ -62,6 +62,7 @@ namespace serverWebAPI.Controllers
             }
         }
         [HttpDelete("{id}")]
+	[Authorize]
         public async Task<IActionResult> DeletePost(int id){
             try
             {
@@ -79,6 +80,7 @@ namespace serverWebAPI.Controllers
         }
 
         [HttpPut("update")]
+	[Authorize]
         public async Task<IActionResult> UpdatePost(Post post){
             try
             {

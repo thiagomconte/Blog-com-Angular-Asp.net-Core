@@ -25,13 +25,7 @@
 
 .form-icon {
   text-align: center;
-  background: rgb(41, 38, 77);
-  background: linear-gradient(
-    90deg,
-    rgba(41, 38, 77, 1) 0%,
-    rgba(9, 9, 121, 1) 38%,
-    rgba(0, 150, 180, 1) 100%
-  );
+  background: black;
   border-radius: 50%;
   font-size: 40px;
   color: white;
@@ -60,16 +54,18 @@
 }
 
 .register-page .btn{
-    background-color: rgb(15, 15, 207);
-    color: white;
+    background: white;
+    color: black;
     font-size: 1.2rem;
     border-radius:1rem;
+    border: 1px solid black;
     height:2.5rem;
     margin-top: 2.5rem;
 }
 
 .register-page .btn:hover{
-    background-color: rgb(0, 0, 90);
+    background: black;
+    color: white;
 }
 
 .register-page span{
