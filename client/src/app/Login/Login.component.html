@@ -1,0 +1,15 @@
+<div class="login-page">
+  <div class="alert alert-danger" [ngStyle]="{'display': !showDanger ? 'none' : 'block' }">
+    <p>{{errorMessage}}</p>
+  </div>
+  <div class="form-icon">
+    <i class="fas fa-user"></i>
+  </div>
+  <h1>Login</h1>
+  <form [formGroup]="formLogin" (submit)="login()" class="login-form">
+    <input formControlName="email" type="email" class="px-3" placeholder="Your email">
+    <input formControlName="password" type="password" class="px-3" placeholder="Your password">
+    <button class="btn">Login <i class="fas fa-sign-in-alt login-icon"></i></button>
+    <span>Don't have an account? You can create <a routerLink="/register">here.</a></span>
+  </form>
+</div>

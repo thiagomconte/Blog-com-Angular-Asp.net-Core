@@ -1,0 +1,20 @@
+<div class="row mt-5 post" *ngFor="let post of posts">
+  <div class="col-lg-4">
+    <img
+      class="card-img"
+      src="{{post.photo}}"
+      alt=""
+    />
+  </div>
+  <div class="col-lg-8 description">
+    <h2>{{post.title}}</h2>
+    <span class="span-date"
+      ><i class="far fa-calendar-alt"></i> {{post.created_at | date:'dd/MM/YYYY'}}</span
+    >
+    <span class="span-text"
+      >{{post.description}}</span
+    >
+    <br>
+    <a routerLink="/post" [queryParams]="{slug: post.slug}" class="btn mt-1">Read more</a>
+  </div>
+</div>

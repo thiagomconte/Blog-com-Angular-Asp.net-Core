@@ -1,0 +1,56 @@
+.post {
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.post .btn{
+    width: 8rem;
+    text-align: center;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.post .btn:hover{
+    background: black;
+    color: white;
+}
+
+
+.post .card-img {
+  max-width: 350px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+}
+
+.description h2{
+    font-size: 1.6rem;
+}
+
+.description .span-date {
+  opacity: 0.7;
+}
+
+.description .span-text {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+@media(max-width: 1024px){
+    .post{
+        text-align:center;
+    }
+    .description h2{
+        margin-top: 1rem;
+    }
+    .post .btn{
+        margin: 0 auto;
+    }
+}

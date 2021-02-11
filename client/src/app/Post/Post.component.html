@@ -1,0 +1,19 @@
+<div class="post-page">
+  <h1>{{post.title}}</h1>
+  <hr>
+  <span class="post-date"><i class="far fa-calendar-alt"></i> {{post.created_at | date:'dd/MM/YYYY'}}</span>
+  <p class="post-description">
+    {{post.description}}
+  </p>
+  <hr>
+  <br>
+  <img
+    class="post-img"
+    src="{{post.photo}}"
+    alt=""
+  />
+  <br> 
+  <span class="post-content"
+    >{{post.content}}</span
+  >
+</div>

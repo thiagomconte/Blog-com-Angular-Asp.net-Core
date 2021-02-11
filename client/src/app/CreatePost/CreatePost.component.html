@@ -1,0 +1,18 @@
+<div class="alert alert-success" [ngStyle]="{'display': !showAlert ? 'none' : 'block' }">
+  <p>{{successMessage}}</p>
+</div>
+<div class="alert alert-danger" [ngStyle]="{'display': !showDanger ? 'none' : 'block' }">
+  <p>{{errorMessage}}</p>
+</div>
+<div class="create-post-page">
+  <h1>Create Post</h1>
+  <hr>
+  <form [formGroup]="createPostForm" (submit)="postSubmit()" class="create-post-form">
+    <input type="text" formControlName="title" class="px-3" placeholder="Title">
+    <input type="text" formControlName="description" class="px-3" placeholder="Descritpion">
+    <input type="text" formControlName="slug" class="px-3" placeholder="Slug">
+    <input type="text" formControlName="photo" class="px-3" placeholder="Photo">
+    <textarea formControlName="content" id="" cols="30" rows="10" placeholder="Content"></textarea>
+    <button type="submit" value="submit" class="btn">Create Post</button>
+  </form>
+</div>

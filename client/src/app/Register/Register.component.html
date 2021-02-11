@@ -1,0 +1,17 @@
+<div class="register-page">
+  <div class="alert alert-danger" [ngStyle]="{'display': !showDanger ? 'none' : 'block' }">
+    <p>{{errorMessage}}</p>
+  </div>
+  <div class="form-icon">
+    <i class="fas fa-user"></i>
+  </div>
+  <h1>Register</h1>
+  <form [formGroup]="formUser" (submit)="register()" class="register-form">
+    <input formControlName="nome" type="text" class="px-3" placeholder="Your name">
+    <input formControlName="email" type="email" class="px-3" placeholder="Your email">
+    <input formControlName="password" type="password" class="px-3" placeholder="Your password">
+    <input formControlName="checkpassword" type="password" class="px-3" placeholder="Confirm password">
+    <button class="btn">Register <i class="fas fa-sign-in-alt register-icon"></i></button>
+    <span>Already have an account? You can log in <a routerLink="/login">here.</a></span>
+  </form>
+</div>

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg mb-5">
+  <a class="navbar-brand" [routerLink]="'.'">Blog Angular</a>
+
+  <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    &#9776;
+  </button>
+
+  <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <!-- Step 4: Close the menu when a link is clicked. -->
+        <a class="nav-link" routerLink="login" (click)="isMenuCollapsed = true" *ngIf="!auth.isLoggedIn">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="register" (click)="isMenuCollapsed = true" *ngIf="!auth.isLoggedIn">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="createPost" (click)="isMenuCollapsed = true" *ngIf="auth.isLoggedIn">Add Post</a>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" (click)="logout()" *ngIf="auth.isLoggedIn">Logout</span>
+      </li>
+    </ul>
+  </div>
+</nav>
