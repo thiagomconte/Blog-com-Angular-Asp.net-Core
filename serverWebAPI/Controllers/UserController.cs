@@ -81,7 +81,7 @@ namespace serverWebAPI.Controllers
         [HttpGet("isAuth")]
         [Authorize]
         public IActionResult IsAuth(){
-            return Ok("Esta logado");
+            return Ok(true);
         }
 
     }

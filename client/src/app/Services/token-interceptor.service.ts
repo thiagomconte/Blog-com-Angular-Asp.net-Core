@@ -30,8 +30,7 @@ export class TokenInterceptorService implements HttpInterceptor {
             tap({
               error: (res) => {    
                 if(res.status === 401){
-                  this.store.dispatch(logoutUser());  
-                  this.router.navigate(['/login'])
+                  this.store.dispatch(logoutUser()); 
                 }
               }
             })

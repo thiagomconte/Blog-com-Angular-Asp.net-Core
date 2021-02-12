@@ -6,18 +6,20 @@ import { LoginComponent } from './Login/Login.component';
 import { PostComponent } from './Post/Post.component';
 import { RegisterComponent } from './Register/Register.component';
 import { UpdatePostComponent } from './UpdatePost/UpdatePost.component';
+import { AuthService} from './Services/authGuard/auth.service';
+import { GuestService} from './Services/guestGuard/guest.service';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [GuestService]},
   {path: '', component: CardComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent, canActivate: [GuestService]},
   {path: 'post', component: PostComponent},
-  {path: 'createPost', component: CreatePostComponent},
-  {path: 'updatePost', component: UpdatePostComponent},
+  {path: 'createPost', component: CreatePostComponent, canActivate: [AuthService]},
+  {path: 'updatePost', component: UpdatePostComponent, canActivate: [AuthService]},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
